@@ -251,7 +251,7 @@ function renderizarCatalogo(produtos = catalogoSuplementos) {
               ${seloTop}
               <div class="product-image-stage">
                 <div class="product-image-wrap">
-                  <img class="product-image" src="${produto.imagem}" alt="${produto.nome}" loading="lazy" />
+                  <img class="product-image" src="${produto.imagem}" alt="${produto.nome}" loading="lazy" decoding="async" />
                 </div>
               </div>
               <div class="product-body">
@@ -299,7 +299,7 @@ function renderizarTop3Home(produtos = catalogoSuplementos) {
             <article class="product-card top3-card js-filter-item" data-category="${produto.categoria}">
               <span class="product-badge" aria-label="${rankLabel}">${rankLabel}</span>
               <div class="top3-image-stage">
-                <img src="${produto.imagem}" alt="${produto.nome}" loading="lazy" />
+                <img src="${produto.imagem}" alt="${produto.nome}" loading="lazy" decoding="async" />
               </div>
               <div class="product-body top3-body">
                 <div class="product-meta">

@@ -1606,20 +1606,53 @@ h2 {
 }
 
 .subscription-card .plan-image {
+  position: relative;
   width: 100%;
   height: 280px;
+  isolation: isolate;
+  overflow: hidden;
   display: block;
-  padding: 0;
-  object-fit: cover;
-  object-position: center 30%;
+  object-fit: contain;
+  object-position: center 28%;
+  transform: translateY(10px) scale(1.01);
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.62));
   background:
-    radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%),
-    linear-gradient(160deg, #1a2331, #0d131c);
-  transform: none;
-  transform-origin: center center;
-  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.7));
-  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+    radial-gradient(circle at 50% 14%, rgba(216, 233, 247, 0.3), transparent 54%),
+    radial-gradient(circle at 16% 84%, rgba(84, 129, 168, 0.3), transparent 46%),
+    linear-gradient(165deg, #18263a 0%, #0b121d 72%);
+}
+
+.subscription-card .plan-image::before {
+  content: "";
+  position: absolute;
+  inset: 6% 7% 10%;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.03));
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 14px 26px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.subscription-card .plan-image::after {
+  content: "";
+  position: absolute;
+  inset: auto 8% 8%;
+  height: 48px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(13, 20, 31, 0.75) 0%, rgba(13, 20, 31, 0) 72%);
+  filter: blur(4px);
+  z-index: 1;
+}
+
+.subscription-card .plan-image {
+  -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 80%, transparent 100%);
+  position: relative;
+  z-index: 2;
 }
 
 .subscription-grid .plan-card:nth-child(1) .plan-image {
@@ -1716,6 +1749,9 @@ h2 {
 
   .subscription-card .plan-image {
     height: 256px;
+  }
+
+  .subscription-card .plan-image {
     transform: none;
     object-position: center 28%;
   }
@@ -1736,6 +1772,9 @@ h2 {
 @media (max-width: 600px) {
   .subscription-card .plan-image {
     height: 236px;
+  }
+
+  .subscription-card .plan-image {
     transform: none;
     object-position: center 28%;
   }
@@ -2302,7 +2341,10 @@ h2 {
   .hero-highlights svg {
     width: 20px;
     height: 20px;
-    stroke-width: 2.8;
+  }
+
+  .subscription-card .plan-image::before {
+    inset: 8% 7% 12%;
   }
 
   .cta-button {
@@ -2453,6 +2495,13 @@ h2 {
 
   .subscription-card .plan-image {
     height: 220px;
+    background:
+      radial-gradient(circle at 50% 16%, rgba(216, 233, 247, 0.24), transparent 52%),
+      radial-gradient(circle at 16% 84%, rgba(84, 129, 168, 0.22), transparent 44%),
+      linear-gradient(165deg, #141f31 0%, #0b111a 72%);
+  }
+
+  .subscription-card .plan-image {
     object-position: center 26%;
   }
 
