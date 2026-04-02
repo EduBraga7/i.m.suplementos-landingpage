@@ -27,7 +27,7 @@ body {
   --color-border-soft: #2e3b4e;
   --color-border-strong: #415169;
   --notice-height: 28px;
-  --header-height: 72px;
+  --header-height: 70px;
   --space-xxs: 0.25rem;
   --space-xs: 0.5rem;
   --space-sm: 0.75rem;
@@ -169,7 +169,7 @@ h2 {
 .site-header {
   position: fixed;
   inset: var(--notice-height) 0 auto 0;
-  height: var(--header-height);
+  min-height: var(--header-height);
   background: rgba(13, 17, 23, 0.78);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px);
@@ -184,7 +184,8 @@ h2 {
 }
 
 .header-content {
-  height: 100%;
+  min-height: var(--header-height);
+  padding-block: 5px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -209,10 +210,28 @@ h2 {
 }
 
 .site-header .logo.logo-with-mark {
+  display: flex;
+  align-items: center;
   font-family: "Sora", sans-serif;
   font-style: normal;
   letter-spacing: normal;
   text-transform: none;
+  max-width: min(280px, calc(100% - 3.4rem));
+  flex-shrink: 0;
+}
+
+.site-header .logo.logo-with-mark img {
+  width: auto;
+  height: 60px;
+  margin-right: 15px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(127, 179, 204, 0.32));
+  transition: transform 0.3s ease;
+}
+
+.site-header .logo.logo-with-mark:hover img,
+.site-header .logo.logo-with-mark:focus-visible img {
+  transform: scale(1.05);
 }
 
 .logo-with-mark img {
@@ -1481,10 +1500,6 @@ h2 {
 }
 
 @media (max-width: 600px) {
-  .logo-text-stack small {
-    display: none;
-  }
-
   .subscriptions {
     padding-top: 0.95rem;
   }
@@ -1892,6 +1907,12 @@ h2 {
   padding: 2.8rem 0 5.5rem;
 }
 
+.site-footer .footer-top,
+.site-footer .footer-bottom-content {
+  width: min(100% - 2rem, 1200px);
+  margin: 0 auto;
+}
+
 .footer-top {
   display: flex;
   justify-content: space-between;
@@ -1910,6 +1931,9 @@ h2 {
 .footer-brand {
   justify-self: start;
   max-width: 24rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 @media (min-width: 769px) {
@@ -1925,7 +1949,7 @@ h2 {
 .footer-logo {
   display: inline-flex;
   align-items: center;
-  gap: 0.7rem;
+  gap: 0;
   font-family: "Bebas Neue", sans-serif;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -1933,10 +1957,16 @@ h2 {
 }
 
 .footer-logo img {
-  width: 2.8rem;
-  height: 2.8rem;
+  width: auto;
+  height: 50px;
   object-fit: contain;
   filter: drop-shadow(0 0 8px rgba(127, 179, 204, 0.25));
+  transition: transform 0.3s ease;
+}
+
+.footer-logo:hover img,
+.footer-logo:focus-visible img {
+  transform: scale(1.05);
 }
 
 .footer-logo > span {
@@ -1957,6 +1987,7 @@ h2 {
   color: var(--color-text-secondary);
   line-height: 1.5;
   font-weight: 300;
+  margin: 0;
   max-width: 28ch;
 }
 
@@ -2105,15 +2136,27 @@ h2 {
   }
 
   .footer-brand {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     max-width: 100%;
+    gap: 1.1rem;
   }
 
   .footer-logo {
     justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .footer-logo img {
+    width: auto;
+    height: 100px;
   }
 
   .footer-brand p {
     max-width: 34ch;
+    margin: 0 auto;
+    font-size: 0.95rem;
   }
 
   .footer-links,
@@ -2380,7 +2423,7 @@ h2 {
 @media (max-width: 767px) {
   :root {
     --notice-height: 24px;
-    --header-height: 62px;
+    --header-height: 68px;
   }
 
   .top-notice {
@@ -2418,6 +2461,32 @@ h2 {
 
   .menu-toggle span {
     height: 2px;
+  }
+
+  .site-header .logo.logo-with-mark {
+    max-width: calc(100% - 3.4rem);
+    gap: 0.5rem;
+  }
+
+  .site-header .logo.logo-with-mark img {
+    width: auto;
+    height: 60px;
+    margin-right: 15px;
+  }
+
+  .site-header .logo.logo-with-mark .logo-text-stack strong {
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  .site-header .logo.logo-with-mark .logo-text-stack small,
+  .footer-logo .logo-text-stack small {
+    display: none;
+  }
+
+  .footer-logo img {
+    width: auto;
+    height: 100px;
   }
 
   .hero-content {
